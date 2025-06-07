@@ -1,0 +1,28 @@
+services:
+
+  redis-database:
+    container_name: redis-database
+    hostname: redis-database
+    image: redis:8.0-rc1
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+      timeout: 5s
+
+  #postgre-database:
+  #  container_name: postgre-database
+  #  hostname: postgre-database
+  #  image: postgres:16
+  #  ports:
+  #    - "5432:5432"
+  #  environment:
+  #    POSTGRES_USER: postgres
+  #    POSTGRES_PASSWORD: postgres
+  #    POSTGRES_DB: postgres
+  #  healthcheck:
+  #    test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres" ]
+        
